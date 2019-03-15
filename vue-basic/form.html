@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Vue.js表单练习</title>
+			<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+		<style type="text/css">
+			.container{
+				display: block;
+				text-align: center;
+				background:url(img/back.jpg) no-repeat center center;
+				background-size: cover;
+				background-attachment: fixed;
+				
+				
+			}
+		   .img{
+			   height: 150px;
+			   width: 150px;
+			   margin-left: 30px;
+			   border-radius: 50%;
+		   }
+		   .text{
+			   border-radius:5px; 
+		   }
+			.icon-envelope-alt{
+				color: red;
+			}
+			.but1{
+			border-radius:5px;
+			background: #FFFFFF;
+			font-size: 20px;
+			margin-left: 30px;
+			}
+			.but2{
+					border-radius:5px;
+				background: #FFFFFF;
+				font-size: 20px;
+				margin-left: 50px;
+			}
+			.inter{
+				margin-left: -10px;
+			}
+			.sex{
+				margin-left:-10px;
+			}
+			.nation{
+			/* text-align: left; */
+			margin-left: -110px;
+			
+			}
+			.school{
+				margin-left: -75px;
+			}
+		</style>
+	
+	</head>
+	<body>
+		<div id="app">
+			<form method="get">
+			<div class="container">
+
+			<img src="img/jianshu.jpg" class="img"/>
+			<br><br><br>
+			<br>
+			<i class="icon-envelope"></i>
+			邮箱：   &nbsp;<input type="text"  placeholder="请输入邮箱" class="text">
+			<br><br><br>
+			<i class="icon-user"></i>
+			用户名:  &nbsp;<input type="text" v-model="message1" placeholder="请输入用户名"  class="text"/>
+			<br><br><br>
+			<i class="icon-key"></i>
+            密码： &nbsp;<input type="text"  placeholder="请输入密码" class="text"/>
+			<br><br><br>
+			<i class="icon-camera"></i>
+		    兴趣方向:&nbsp;&nbsp;&nbsp;<input type="checkbox" id="java" value="程序" v-model="checkedNames" class="inter">
+			<label for="baidu" class="inter">程序</label>
+			<input type="checkbox" id="read" value="阅读" v-model="checkedNames">
+			<label for="google" class="inter">阅读</label>
+			<input type="checkbox" id="feeling" value="情感" v-model="checkedNames">
+			<label for="tencent" class="inter">情感</label>
+			<br>
+			<span>选择的值为: {{ checkedNames }}</span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label>你一共选了{{checkedNames.length}}个</label>
+			<br><br><br>
+			<i class="icon"></i>
+			<div class="sex">
+			性别：<input type="radio" id="male" value="male" v-model="picked" >
+			<label for="male">男</label>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;
+		    <input type="radio" id="female" value="female" v-model="picked">
+			   <label for="female">女</label>
+			<br><br><br></div>
+			<div class="nation">
+			民族: <select name="nation" v-model="nation"  >
+                            <option value="汉族" selected>汉族</option>
+                            <option value="满族">满族</option>
+                            <option value="苗族">苗族</option>
+                            <option value="回族">回族</option>
+                            <option value="彝族">彝族</option>
+                            <option value="傣族">傣族</option>
+                         </select>
+						 <br><br><br></div>
+						 <div class="school">
+			学校：<select v-model="school" name="fruit" >
+				<option value="">选择学校</option>
+				<option value="南工院">南工院</option>
+				<option value="南信院">南信院</option>
+			</select>
+			<br><br></div>
+
+		   <button type="button" class="but1" @click="commit">注册</button>
+		   <input type="reset" class="but2"  value="重置" @click="reset"/>
+		   <!-- <button type="reset" class="but2"  >重置</button> -->
+	</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					cover:'avatar.jpg',
+					message1: '',
+					nation:'',
+					school:'',
+					message2: 'Vue官方教程',
+					checkedNames: [],
+					picked: 'male',
+				
+				},
+				methods: {
+					commit: function() {
+						alert('学校是'+this.school+',民族是'+this.nation+'的,'+this.message1);
+					},
+					reset: function(){
+						this.checkedNames = [];
+					}
+					
+				}
+			})
+		</script>
+	</body>
+</html>

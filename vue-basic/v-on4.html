@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>V-on练习4-结合图标关注和取关的练习</title>
+		<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+	</head>
+	<style type="text/css">
+		.followed{
+			color: darkgrey;
+		}
+		.link{
+			cursor: pointer;
+		}
+		.cancle-followed{
+			color: #008000;
+		}
+		.but{
+			background: #FFFFFF;
+			font-size: 30px;
+			border-radius: 10px;
+			border: 1px solid rgb(234,111,90);
+			color: red;
+			outline: none;
+		}
+		.icon-heart{
+			color: red;
+		}
+		
+	</style>
+	<body>
+		<!-- Vue-app的根容器 -->
+		<div id="app">
+			<span><button type="button"  class="but" v-show="followed" @click="handleFollow"><i class ="icon-heart"></i>喜欢{{num2}}</button>
+			
+			</span>
+			 <span> <button type="button"  class="but" v-show="followed === false" @click="handleFollow"><i class ="icon-heart-empty"></i>喜欢{{num}}</button>
+			  </span>
+			 
+		</div>
+		<script type="text/javascript">
+			// 实例化一个Vue对象
+			var app=new Vue({
+				el:'#app',
+				data: {
+					num:30,
+					num2:31,
+					followed:false
+				},
+				methods: {
+					handleFollow: function(){
+					  this.followed=!this.followed;
+					}
+					
+						
+					}
+				
+			})
+		</script>
+	</body>
+</html>

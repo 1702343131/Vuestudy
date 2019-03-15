@@ -2,23 +2,27 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>v-model数据双向绑定练习</title>
+		<title>v-bind单向绑定练习</title>
 		<!-- 通过CDN引入Vue.js -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	</head>
 	<body>
-		<!-- vue-app的根容器 -->
+		<!-- Vue-app的根容器 -->
 		<div id="app">
-			<input type="text" v-model="name" placeholder="请输入" />
-			<h2>你好,{{name}}</h2>
+			<img :src="avatar">
+			<p>姓名:{{name}}</p>
+			<a v-bind:href="url">{{website}}</a>
 		</div>
 		<script type="text/javascript">
 			// 实例化一个Vue对象
-			var app = new Vue({
+			var app=new Vue({
 				el:'#app',
 				data:{
-					name : ''
-				}
+					avatar: 'img/001.jpg',
+					name:'猫.妖',
+					website:'豆瓣',
+					url:'img/001.jpg'
+					}
 			})
 		</script>
 	</body>

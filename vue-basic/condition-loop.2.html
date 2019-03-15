@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Vue.js条件和循环的综合练习</title>
+		<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			.container{
+				display: block;
+				width: 80%;
+				margin: 0 auto;
+			}
+			.card{
+				width: 500px;
+				height:90px;
+				margin-right: 30px;
+				border: 1px solid #EEE;
+				border-radius: 10px;
+				text-align: center;
+			}
+			.card img{
+				height:80px;
+				width:50px;
+				border-radius: 50%;
+				margin-left: -400px;
+			}
+			.name{
+				margin-top: -75px;
+				margin-left: -260px;
+			}
+			.num{
+				margin-left: -200px;
+			}
+			.like{
+				color: dimgrey;
+				font-weight: bold;
+				margin-top: -50px;
+				margin-left: 370px;
+			}
+			.nolike{
+				color: #008000;
+				font-weight: bold;
+				margin-top: -50px;
+				margin-left: 370px;
+			}
+			.title{
+				margin-left: 150px;
+			}
+			.all{
+				width: 500px;
+				height:70px;
+				margin-left: 150px;
+				border: 1px solid #EEE;
+				border-radius: 10px;
+				text-align: center;
+			}
+			.huan{
+				margin-top: -50px;
+				margin-left: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Vue-app的根容器 -->
+		<div id="app">
+			<div class="t"><h2 v-if="show" class="title">推荐作者</h2>
+			<h2 class="huan">✌换一批</h2>
+			</div>
+			
+			<div class="container">
+				<!-- 通过循环遍历books数组 -->
+				<div class="card" v-for="author in authors">
+					<!-- 绑定图片的封面属性 -->
+					<img :src="author.cover">
+					<!-- 显示图片的名称 -->
+					<h4 class="name">{{author.name}}</h4>
+					<!-- 显示写了多少字 -->
+					<h4 class="num">{{author.number}}</h4>
+					<!-- 判定like的值，显示不同的文字 -->
+					<p class="like" v-if="author.like">√已关注</p >
+					<p class="nolike" v-else>+关注</p>
+					
+				</div>
+			</div>
+			<div class="all"><h2>查看全部  ></h2></div>
+			
+		</div>
+		<script type="text/javascript">
+			// 实例化一个Vue对象
+			var app=new Vue({
+				el:'#app',
+				data:{
+					show:true,
+					authors:[
+						{
+							cover:'img/avatar.jpg',
+							name:'无名盛宴',
+							number:'写了325k字.13k喜欢',
+							like:true
+						},
+						{
+							cover:'img/avatar1.jpg',
+							name:'念楼学短',
+							number:'写了400k字.15k喜欢',
+							like:false
+						},
+						{
+							cover:'img/avatar2.jpg',
+							name:'且在人间',
+							number:'写了500k字.18k喜欢',
+							like:true
+						},
+						{
+							cover:'img/avatar3.jpg',
+							name:'你好，地球人',
+							number:'写了600k字.20k喜欢',
+							like:false
+						}
+					]
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>computed练习计算购物车总价</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			.container {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.item {
+				display: flex;
+				border: 1px solid beige;
+				border-radius: 10px;
+				width: 95%;
+				height: 100px;
+				margin-bottom: 10px;
+				/* 垂直方向居中 */
+				align-items: center;
+				/* 水平方向居中 */
+				justify-content: center;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			.item-id {
+				flex: 1 1 20%;
+			}
+
+			.item-name {
+				flex: 1 1 30%;
+			}
+
+			.item-price {
+				flex: 1 1 20%;
+			}
+
+			.item-count {
+				display: flex;
+				flex: 1 1 30%;
+			}
+
+			.goods-count {
+				width: 15px;
+			}
+
+			.item-url {
+				margin-right: 20px;
+				flex: 1 1 20%;
+			}
+			.item-sum{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.sum{
+				idth: 100px;
+				height: 40px;
+				background-color: #FF5000;
+				border-radius: 10px;
+				border: none;
+				outline: none;
+				color: #FFF;
+				font-size: 16px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Vue-app的根容器 -->
+		<div id="app">
+			<div class="container">
+				<div class="item" v-for="good in goods">
+
+					<div class="item-id">
+						{{good.id}}
+					</div>
+					<div class="item-name">
+						{{good.name}}
+					</div>
+					<div class="item-pic">
+						<img :src="good.cover" />
+					</div>
+
+					<div class="item-price">
+						{{good.price}}
+					</div>
+					<div class="item-url">
+						<a :href="good.url">商品详情</a>
+					</div>
+					<div class="item-count">
+						<button type="button" @click="good.count-=1" :disabled="good.count===0">-</button>
+						<input type="text" v-model="good.count" class="goods-count" />
+						<button type="button" @click="good.count+=1" class="btn">+</button>
+					</div>
+				</div>
+				<div class="item-sum">
+					
+					<h3> Total price: ¥{{totalPrice}}</h3>
+				
+					<button type="button" @click="sum()" class="sum">结算</button>
+				</div>
+                    <div class="result" v-if="show">
+                    	你购买了:{{sum}}件商品，需要支付总价为：{{totalPrice}}元
+                    </div>
+
+			</div>
+
+		</div>
+		<script type="text/javascript">
+			// 实例化一个Vue对象
+			var app = new Vue({
+				el: '#app',
+				data: {
+					show:false,
+					goods: [{
+						id: 1,
+						name: 'iphone 8',
+						price: 6666,
+						count: 0,
+						cover: 'img/p8.png',
+						url: 'https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.21.67394bbb5xsGTE&id=558550356564&skuId=3640466731057&user_id=2616970884&cat_id=2&is_b=1&rn=7945cd3bcb7bedea4145e142b467e761'
+					}, {
+						id: 2,
+						name: 'iphone x',
+						price: 7777,
+						count: 0,
+						cover: 'img/x.png',
+						situation: '商品详情',
+						url: 'https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.5.67394bbb5xsGTE&id=562099309982&skuId=3535167481896&user_id=2616970884&cat_id=2&is_b=1&rn=7945cd3bcb7bedea4145e142b467e761'
+					}, {
+						id: 3,
+						name: 'iphone xr',
+						price: 8888,
+						count: 0,
+						cover: 'img/xr.png',
+						url: 'https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.1.67394bbb5xsGTE&id=579794586729&skuId=3856455121119&user_id=2616970884&cat_id=2&is_b=1&rn=7945cd3bcb7bedea4145e142b467e761'
+					}]
+				},
+				methods: {
+				
+				},
+				computed: {
+					
+					totalPrice: function() {
+						//定义一个总价
+						var totalPrice = 0;
+						var sums = 0;
+						var len = this.goods.length;
+
+						for (var i = 0; i < len; i++) {
+							totalPrice += this.goods[i].price * this.goods[i].count;
+                            sums += this.goods[i].count;
+						}
+						return totalPrice;
+						
+					},
+					sum: function(){
+						this.show = true;
+						var countsum = 0;
+						var len = this.goods.length;
+						for(var i = 0; i<len;i++){
+							countsum +=this.goods[i].count;
+						}
+						return countsum;
+					}
+					
+				}
+
+			})
+		</script>
+	</body>
+</html>

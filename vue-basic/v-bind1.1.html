@@ -9,19 +9,15 @@
 	<body>
 		<!-- Vue-app的根容器 -->
 		<div id="app">
-			<img :src="avatar">
-			<p>姓名:{{name}}</p>
-			<a v-bind:href="url">{{website}}</a>
+			<input type="text" v-model="name" placeholder="请输入" />
+			你好，{{name}}
 		</div>
 		<script type="text/javascript">
 			// 实例化一个Vue对象
 			var app=new Vue({
 				el:'#app',
 				data:{
-					avatar: 'https://img1.doubanio.com/view/subject/l/public/s29993228.jpg',
-					name:'猫.妖',
-					website:'豆瓣',
-					url:'https://img3.doubanio.com/view/subject/m/public/s29980004.jpg'
+					name:''
 					}
 			})
 		</script>
